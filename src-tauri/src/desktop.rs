@@ -2,10 +2,7 @@ use crate::{app::App, error::AppError};
 use freedesktop_file_parser::{parse, EntryType};
 use rayon::prelude::*;
 use std::{
-    collections::{HashMap, HashSet},
-    env, fs,
-    path::{Path, PathBuf},
-    time::SystemTime,
+    collections::{HashMap, HashSet}, env, fs, path::{Path, PathBuf}, thread::sleep, time::{Duration, SystemTime}
 };
 
 pub struct DesktopFileManager;
@@ -60,8 +57,8 @@ impl DesktopFileManager {
 
     fn parse_desktop_file(file_path: &Path) -> Option<App> {
         let content = fs::read_to_string(file_path).ok()?;
+        dbg!(&file_path);
         let desktop_file = parse(&content).ok()?;
-
         if desktop_file.entry.hidden.unwrap_or(false)
             || desktop_file.entry.no_display.unwrap_or(false)
         {

@@ -60,9 +60,6 @@
     ],
     "externalBin": ["binaries/app"],
     "resources": [
-      "SoulverWrapper/Vendor/SoulverCore-linux/*",
-      "SoulverWrapper/Vendor/SoulverCore-linux/SoulverCore_SoulverCore.resources",
-      "SoulverWrapper/.build/release/libSoulverWrapper.so"
     ]
   },
   "plugins": {

@@ -13,7 +13,6 @@ mod frecency;
 mod oauth;
 mod quicklinks;
 mod snippets;
-mod soulver;
 mod store;
 mod system;
 
@@ -309,7 +308,6 @@ pub fn run() {
             ai::get_ai_settings,
             ai::set_ai_settings,
             ai::ai_can_access,
-            soulver::calculate_soulver
         ])
         .setup(|app| {
             let app_handle = app.handle().clone();
@@ -326,14 +324,6 @@ pub fn run() {
             setup_background_refresh();
             setup_global_shortcut(app)?;
             setup_input_listener(app.handle());
-
-            let soulver_core_path = app
-                .path()
-                .resource_dir()
-                .unwrap()
-                .join("SoulverWrapper/Vendor/SoulverCore-linux");
-
-            soulver::initialize(soulver_core_path.to_str().unwrap());
 
             Ok(())
         })
